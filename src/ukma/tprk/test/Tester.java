@@ -3,10 +3,10 @@ package ukma.tprk.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import ukma.tprk.generator.SequenceGenerator;
-import ukma.tprk.sequence.SequencePartConfig;
-import ukma.tprk.sequence.SequenceService;
-import ukma.tprk.sequence.SequenceAnalyzer;
+import ukma.tprk.core.SequenceAnalyzer;
+import ukma.tprk.model.SequencePartConfig;
+import ukma.tprk.service.SequenceGenerator;
+import ukma.tprk.service.SequenceService;
 
 public class Tester {
 
