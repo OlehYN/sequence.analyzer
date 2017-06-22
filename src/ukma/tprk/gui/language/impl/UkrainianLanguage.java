@@ -184,4 +184,9 @@ public class UkrainianLanguage implements Language {
 		return "Відкрити";
 	}
 
+	@Override
+	public String getLoadFromFileButtonName() {
+		return "Файл";
+	}
+
 }

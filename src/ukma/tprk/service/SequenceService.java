@@ -1,11 +1,14 @@
 package ukma.tprk.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import ukma.tprk.core.SequenceAnalyzer;
+import ukma.tprk.model.FilePartConfig;
+import ukma.tprk.model.PartConfig;
 import ukma.tprk.model.SequencePartConfig;
+import ukma.tprk.util.CustomFileReader;
 
 public class SequenceService {
 
@@ -14,33 +17,49 @@ public class SequenceService {
 
 	private final double epselon;
 
-	public SequenceService(List<SequencePartConfig> params, double epselon) {
+	public SequenceService(List<PartConfig> params, double epselon) throws IOException {
 		this.epselon = epselon;
 		sequence = new ArrayList<Double>();
-		Collections.sort(params);
 
-		for (SequencePartConfig param : params) {
-			SequenceGenerator sequenceGenerator = new SequenceGenerator(param.getInput(), param.getStart(),
-					param.getEnd());
-			List<Double> currentSequence = sequenceGenerator.getSequence();
+		for (PartConfig param : params) {
+			if (param instanceof SequencePartConfig) {
+				SequenceGenerator sequenceGenerator = new SequenceGenerator(param.getInput(), param.getStart(),
+						param.getEnd());
+				List<Double> currentSequence = sequenceGenerator.getSequence();
 
-			sequence.addAll(currentSequence);
+				sequence.addAll(currentSequence);
+			} else if (param instanceof FilePartConfig) {
+				String text = CustomFileReader.getText(param.getInput());
+				String[] numbers = text.split(" ");
+
+				for (String number : numbers) {
+					sequence.add(Double.valueOf(number));
+				}
+			}
 		}
 
 		this.points = SequenceAnalyzer.getPoints(sequence, epselon);
 	}
 
-	public SequenceService(List<SequencePartConfig> params, int equalValue, double epselon) {
+	public SequenceService(List<PartConfig> params, int equalValue, double epselon) throws IOException {
 		this.epselon = epselon;
 		sequence = new ArrayList<Double>();
-		Collections.sort(params);
 
-		for (SequencePartConfig param : params) {
-			SequenceGenerator sequenceGenerator = new SequenceGenerator(param.getInput(), param.getStart(),
-					param.getEnd());
-			List<Double> currentSequence = sequenceGenerator.getSequence();
+		for (PartConfig param : params) {
+			if (param instanceof SequencePartConfig) {
+				SequenceGenerator sequenceGenerator = new SequenceGenerator(param.getInput(), param.getStart(),
+						param.getEnd());
+				List<Double> currentSequence = sequenceGenerator.getSequence();
 
-			sequence.addAll(currentSequence);
+				sequence.addAll(currentSequence);
+			} else if (param instanceof FilePartConfig) {
+				String text = CustomFileReader.getText(param.getInput());
+				String[] numbers = text.split(" ");
+
+				for (String number : numbers) {
+					sequence.add(Double.valueOf(number));
+				}
+			}
 		}
 
 		sequence = SequenceAnalyzer.generateProbabilitySequence(sequence, equalValue);

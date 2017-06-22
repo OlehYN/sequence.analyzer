@@ -4,7 +4,7 @@ import javax.swing.table.AbstractTableModel;
 
 import ukma.tprk.gui.config.GlobalConfig;
 import ukma.tprk.gui.language.Language;
-import ukma.tprk.model.SequencePartConfig;
+import ukma.tprk.model.PartConfig;
 
 import static ukma.tprk.gui.config.GuiConstants.*;
 
@@ -15,11 +15,11 @@ public class SequencePartConfigTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 4833742045018702454L;
 
 	private Language language = GlobalConfig.getLanguage();
-	private List<SequencePartConfig> partConfigs;
+	private List<PartConfig> partConfigs;
 
 	private static final int COLUMN_NUMBER = 3;
 
-	public SequencePartConfigTableModel(List<SequencePartConfig> partConfigs) {
+	public SequencePartConfigTableModel(List<PartConfig> partConfigs) {
 		this.partConfigs = partConfigs;
 	}
 
@@ -35,15 +35,15 @@ public class SequencePartConfigTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		SequencePartConfig sequencePartConfig = partConfigs.get(rowIndex);
+		PartConfig PartConfig = partConfigs.get(rowIndex);
 
 		switch (columnIndex) {
 		case FORMULA_COLUMN:
-			return sequencePartConfig.getInput();
+			return PartConfig.getInput();
 		case START_COLUMN:
-			return sequencePartConfig.getStart();
+			return PartConfig.getStart();
 		case END_COLUMN:
-			return sequencePartConfig.getEnd();
+			return PartConfig.getEnd();
 		}
 
 		throw new IndexOutOfBoundsException("Such column index isn't supported!");
@@ -88,7 +88,7 @@ public class SequencePartConfigTableModel extends AbstractTableModel {
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		SequencePartConfig row = partConfigs.get(rowIndex);
+		PartConfig row = partConfigs.get(rowIndex);
 		switch (columnIndex) {
 		case FORMULA_COLUMN:
 			row.setInput((String) aValue);

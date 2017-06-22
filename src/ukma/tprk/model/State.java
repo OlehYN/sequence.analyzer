@@ -7,7 +7,7 @@ public class State implements Serializable {
 
 	private static final long serialVersionUID = -7180733917808527766L;
 
-	private List<SequencePartConfig> sequencePartConfigs;
+	private List<PartConfig> sequencePartConfigs;
 
 	private boolean buildSequence;
 	private boolean buildResultChart;
@@ -15,11 +15,11 @@ public class State implements Serializable {
 	private boolean writeToFile;
 	private boolean showResults;
 
-	public List<SequencePartConfig> getSequencePartConfigs() {
+	public List<PartConfig> getSequencePartConfigs() {
 		return sequencePartConfigs;
 	}
 
-	public void setSequencePartConfigs(List<SequencePartConfig> sequencePartConfigs) {
+	public void setSequencePartConfigs(List<PartConfig> sequencePartConfigs) {
 		this.sequencePartConfigs = sequencePartConfigs;
 	}
 

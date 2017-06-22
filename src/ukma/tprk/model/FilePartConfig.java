@@ -2,19 +2,19 @@ package ukma.tprk.model;
 
 import java.io.Serializable;
 
-public class SequencePartConfig implements Serializable, PartConfig {
-
-	private static final long serialVersionUID = -9091369509587821478L;
-
+public class FilePartConfig implements Serializable, PartConfig {
+	
+	private static final long serialVersionUID = -2541173087084389484L;
+	
 	private String input;
 	private Integer start;
 	private Integer end;
 
-	public SequencePartConfig(String input, int start, int end) {
+	public FilePartConfig(String input, int start, int end) {
 		super();
 
 		if (input == null)
-			throw new IllegalArgumentException("Incorrect formula");
+			throw new IllegalArgumentException("Incorrect file name");
 
 		this.input = input;
 		this.start = start;
@@ -44,5 +44,4 @@ public class SequencePartConfig implements Serializable, PartConfig {
 	public void setEnd(Integer end) {
 		this.end = end;
 	}
-
 }

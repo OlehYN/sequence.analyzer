@@ -34,6 +34,8 @@ import javax.swing.JTextField;
 import ukma.tprk.gui.config.GlobalConfig;
 import ukma.tprk.gui.language.Language;
 import ukma.tprk.gui.table.SequencePartConfigTableModel;
+import ukma.tprk.model.FilePartConfig;
+import ukma.tprk.model.PartConfig;
 import ukma.tprk.model.SequencePartConfig;
 import ukma.tprk.model.State;
 import ukma.tprk.service.ChartUnitConverter;
@@ -58,6 +60,8 @@ public class MainFrame extends JFrame {
 
 	private static final int EPSELON_FIELD_SIZE = 10;
 
+	private static final int MAX_INT_COLUMN_SIZE = 200;
+
 	private JTextField endField;
 	private JTextField startField;
 	private JTextField formulaField;
@@ -72,7 +76,7 @@ public class MainFrame extends JFrame {
 
 	private JTable configsTable;
 
-	private List<SequencePartConfig> sequencePartConfigs = new ArrayList<>();
+	private List<PartConfig> sequencePartConfigs = new ArrayList<>();
 
 	public MainFrame() {
 		super();
@@ -83,6 +87,7 @@ public class MainFrame extends JFrame {
 		SequencePartConfigTableModel tableModel = new SequencePartConfigTableModel(sequencePartConfigs);
 
 		configsTable = new JTable(tableModel);
+
 		JScrollPane tableScrollPane = new JScrollPane(configsTable);
 		tablePanel.setBorder(BorderFactory.createEmptyBorder(TABLE_BORDER_SIZE, TABLE_BORDER_SIZE, TABLE_BORDER_SIZE,
 				TABLE_BORDER_SIZE));
@@ -101,6 +106,9 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle(language.getTitle());
 		setJMenuBar(menuBar);
+
+		configsTable.getColumn(language.getStartColumnName()).setMaxWidth(MAX_INT_COLUMN_SIZE);
+		configsTable.getColumn(language.getEndColumnName()).setMaxWidth(MAX_INT_COLUMN_SIZE);
 	}
 
 	private JMenu createMenu() {
@@ -179,7 +187,7 @@ public class MainFrame extends JFrame {
 						writeToFileCheckBox.setSelected(state.isWriteToFile());
 						showResultsCheckBox.setSelected(state.isShowResults());
 
-						for (SequencePartConfig partConfig : state.getSequencePartConfigs())
+						for (PartConfig partConfig : state.getSequencePartConfigs())
 							sequencePartConfigs.add(partConfig);
 
 						inputStream.close();
@@ -282,6 +290,30 @@ public class MainFrame extends JFrame {
 		JButton removeRowButton = new JButton(language.getRemoveRowButtonName());
 		JButton moveUpButton = new JButton(language.getMoveUpButtonName());
 		JButton moveDownButton = new JButton(language.getMoveDownButtonName());
+		JButton loadFromFileButton = new JButton(language.getLoadFromFileButtonName());
+
+		loadFromFileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				JFileChooser fileopen = new JFileChooser();
+				int ret = fileopen.showDialog(null, language.getIOOpenName());
+				if (ret == JFileChooser.APPROVE_OPTION) {
+					File file = fileopen.getSelectedFile();
+					try {
+						String name = file.getParent() + "/" + file.getName();
+						FilePartConfig filePartConfig = new FilePartConfig(name, 0, (int) file.getTotalSpace());
+						sequencePartConfigs.add(filePartConfig);
+
+						configsTable.repaint();
+						configsTable.revalidate();
+					} catch (Exception e) {
+						showErrorMessage(language.getIOExceptionMessage());
+					}
+				}
+
+			}
+		});
 
 		addNewRowButton.addActionListener(new ActionListener() {
 
@@ -336,8 +368,8 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = configsTable.getSelectedRow();
 				if (selectedRow > 0) {
-					SequencePartConfig upper = sequencePartConfigs.get(selectedRow - 1);
-					SequencePartConfig lower = sequencePartConfigs.get(selectedRow);
+					PartConfig upper = sequencePartConfigs.get(selectedRow - 1);
+					PartConfig lower = sequencePartConfigs.get(selectedRow);
 
 					sequencePartConfigs.set(selectedRow, upper);
 					sequencePartConfigs.set(selectedRow - 1, lower);
@@ -358,8 +390,8 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = configsTable.getSelectedRow();
 				if (selectedRow >= 0 && selectedRow < sequencePartConfigs.size() - 1) {
-					SequencePartConfig upper = sequencePartConfigs.get(selectedRow);
-					SequencePartConfig lower = sequencePartConfigs.get(selectedRow + 1);
+					PartConfig upper = sequencePartConfigs.get(selectedRow);
+					PartConfig lower = sequencePartConfigs.get(selectedRow + 1);
 
 					sequencePartConfigs.set(selectedRow + 1, upper);
 					sequencePartConfigs.set(selectedRow, lower);
@@ -378,6 +410,7 @@ public class MainFrame extends JFrame {
 		buttonsPanel.add(removeRowButton);
 		buttonsPanel.add(moveUpButton);
 		buttonsPanel.add(moveDownButton);
+		buttonsPanel.add(loadFromFileButton);
 		return buttonsPanel;
 	}
 

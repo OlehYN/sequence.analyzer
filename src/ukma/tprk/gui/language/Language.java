@@ -70,6 +70,8 @@ public interface Language {
 	String getHelpMenuItem();
 
 	String getMenuName();
-	
+
 	String getIOOpenName();
+
+	String getLoadFromFileButtonName();
 }
