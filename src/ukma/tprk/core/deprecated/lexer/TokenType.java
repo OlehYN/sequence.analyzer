@@ -1,4 +1,4 @@
-package ukma.tprk.core.lexer;
+package ukma.tprk.core.deprecated.lexer;
 
 public enum TokenType {
 

@@ -31,7 +31,7 @@ public class ChartFrame extends JFrame {
 				chartComponent.repaint();
 			}
 		});
-		
+
 		JPanel panel = new JPanel();
 		panel.add(chartComponent);
 
@@ -40,5 +40,6 @@ public class ChartFrame extends JFrame {
 		super.setSize(WIDTH, HEIGHT);
 		super.setTitle(name);
 		super.setContentPane(chartComponent);
+		super.setLocationRelativeTo(null);
 	}
 }

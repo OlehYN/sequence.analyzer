@@ -39,7 +39,8 @@ import ukma.tprk.model.PartConfig;
 import ukma.tprk.model.SequencePartConfig;
 import ukma.tprk.model.State;
 import ukma.tprk.service.ChartUnitConverter;
-import ukma.tprk.service.SequenceService;
+import ukma.tprk.service.impl.ChartUnitConverterImpl;
+import ukma.tprk.service.impl.SequenceServiceImpl;
 import ukma.tprk.util.Writer;
 
 public class MainFrame extends JFrame {
@@ -77,6 +78,8 @@ public class MainFrame extends JFrame {
 	private JTable configsTable;
 
 	private List<PartConfig> sequencePartConfigs = new ArrayList<>();
+
+	private ChartUnitConverter chartUnitConverter = new ChartUnitConverterImpl();
 
 	public MainFrame() {
 		super();
@@ -455,17 +458,17 @@ public class MainFrame extends JFrame {
 					double epselon = Double.valueOf(epselonField.getText());
 
 					if (sequencePartConfigs.size() > 0) {
-						SequenceService sequenceService = buildSequenceCheckBox.isSelected()
-								? new SequenceService(sequencePartConfigs, 0, epselon)
-								: new SequenceService(sequencePartConfigs, epselon);
+						SequenceServiceImpl sequenceService = buildSequenceCheckBox.isSelected()
+								? new SequenceServiceImpl(sequencePartConfigs, 0, epselon)
+								: new SequenceServiceImpl(sequencePartConfigs, epselon);
 
 						if (buildResultChartCheckBox.isSelected()) {
-							new ChartFrame(ChartUnitConverter.getPoints(sequenceService),
+							new ChartFrame(chartUnitConverter.getPoints(sequenceService),
 									language.getResultChartName());
 						}
 
 						if (buildInputChartCheckBox.isSelected()) {
-							new ChartFrame(ChartUnitConverter.getSequence(sequenceService),
+							new ChartFrame(chartUnitConverter.getSequence(sequenceService),
 									language.getInputChartName());
 						}
 

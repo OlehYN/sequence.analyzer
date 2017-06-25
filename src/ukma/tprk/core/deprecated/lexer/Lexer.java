@@ -1,4 +1,4 @@
-package ukma.tprk.core.lexer;
+package ukma.tprk.core.deprecated.lexer;
 
 import java.util.ArrayList;
 import java.util.List;
