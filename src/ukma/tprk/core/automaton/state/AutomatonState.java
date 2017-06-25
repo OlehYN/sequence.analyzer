@@ -1,8 +1,8 @@
 package ukma.tprk.core.automaton.state;
 
-import ukma.tprk.core.automaton.token.AutomatonToken;
+import ukma.tprk.core.token.AbstractToken;
 
-public interface AutomatonState<T extends AutomatonToken<?>> {
+public interface AutomatonState<T extends AbstractToken<?>> {
 	boolean hasRead(char ch);
 
 	T getValue();

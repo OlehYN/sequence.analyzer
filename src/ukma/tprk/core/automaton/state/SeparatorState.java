@@ -1,7 +1,7 @@
 package ukma.tprk.core.automaton.state;
 
 import ukma.tprk.core.automaton.TokenConstants;
-import ukma.tprk.core.automaton.token.SeparatorToken;
+import ukma.tprk.core.token.SeparatorToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class SeparatorState implements AutomatonState<SeparatorToken> {

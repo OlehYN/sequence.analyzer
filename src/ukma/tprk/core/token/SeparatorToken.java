@@ -1,8 +1,8 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
 import ukma.tprk.core.automaton.TokenConstants;
 
-public class SeparatorToken implements AutomatonToken<Character> {
+public class SeparatorToken implements AbstractToken<Character> {
 
 	@Override
 	public Character getValue() {

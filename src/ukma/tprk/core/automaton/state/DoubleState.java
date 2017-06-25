@@ -1,6 +1,6 @@
 package ukma.tprk.core.automaton.state;
 
-import ukma.tprk.core.automaton.token.DoubleToken;
+import ukma.tprk.core.token.DoubleToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class DoubleState implements AutomatonState<DoubleToken> {

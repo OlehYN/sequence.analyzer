@@ -1,6 +1,6 @@
 package ukma.tprk.core.automaton.state;
 
-import ukma.tprk.core.automaton.token.IterationToken;
+import ukma.tprk.core.token.IterationToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class IterationState implements AutomatonState<IterationToken> {

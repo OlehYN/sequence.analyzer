@@ -2,7 +2,7 @@ package ukma.tprk.core.automaton.state;
 
 import java.util.List;
 
-import ukma.tprk.core.automaton.token.FunctionToken;
+import ukma.tprk.core.token.FunctionToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class FunctionState implements AutomatonState<FunctionToken> {

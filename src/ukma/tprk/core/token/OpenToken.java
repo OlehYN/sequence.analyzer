@@ -1,8 +1,8 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
 import ukma.tprk.core.automaton.TokenConstants;
 
-public class OpenToken implements AutomatonToken<Character> {
+public class OpenToken implements AbstractToken<Character> {
 
 	@Override
 	public Character getValue() {

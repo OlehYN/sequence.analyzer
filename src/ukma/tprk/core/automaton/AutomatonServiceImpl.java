@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ukma.tprk.core.automaton.state.AutomatonState;
-import ukma.tprk.core.automaton.token.AutomatonToken;
+import ukma.tprk.core.token.AbstractToken;
 import ukma.tprk.exception.InvalidFormulaException;
 
 public class AutomatonServiceImpl implements AutomatonService {
 
 	@Override
-	public List<AutomatonToken<?>> getTokens(List<AutomatonState<?>> possibleStates, List<AutomatonState<?>> currentStates,
+	public List<AbstractToken<?>> getTokens(List<AutomatonState<?>> possibleStates, List<AutomatonState<?>> currentStates,
 			String input) {
 
-		List<AutomatonToken<?>> tokens = new ArrayList<>();
+		List<AbstractToken<?>> tokens = new ArrayList<>();
 
 		outer: for (int i = 0; i < input.length(); i++) {
 			for (int j = 0; j < currentStates.size(); j++) {

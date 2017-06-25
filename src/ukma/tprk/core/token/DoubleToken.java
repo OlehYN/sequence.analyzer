@@ -1,6 +1,6 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
-public class DoubleToken implements AutomatonToken<Double> {
+public class DoubleToken implements AbstractToken<Double> {
 
 	private double value;
 

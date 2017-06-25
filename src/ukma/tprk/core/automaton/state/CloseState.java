@@ -1,7 +1,7 @@
 package ukma.tprk.core.automaton.state;
 
 import ukma.tprk.core.automaton.TokenConstants;
-import ukma.tprk.core.automaton.token.CloseToken;
+import ukma.tprk.core.token.CloseToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class CloseState implements AutomatonState<CloseToken> {

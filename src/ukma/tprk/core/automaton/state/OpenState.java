@@ -1,7 +1,7 @@
 package ukma.tprk.core.automaton.state;
 
 import ukma.tprk.core.automaton.TokenConstants;
-import ukma.tprk.core.automaton.token.OpenToken;
+import ukma.tprk.core.token.OpenToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
 public class OpenState implements AutomatonState<OpenToken> {

@@ -1,6 +1,6 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
-public class FunctionToken implements AutomatonToken<String> {
+public class FunctionToken implements AbstractToken<String> {
 
 	private String functionName;
 

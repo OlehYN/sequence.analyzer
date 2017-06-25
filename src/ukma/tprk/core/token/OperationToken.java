@@ -1,6 +1,6 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
-public class OperationToken implements AutomatonToken<String> {
+public class OperationToken implements AbstractToken<String> {
 
 	private String operationName;
 

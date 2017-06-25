@@ -1,8 +1,8 @@
-package ukma.tprk.core.automaton.token;
+package ukma.tprk.core.token;
 
 import ukma.tprk.core.automaton.TokenConstants;
 
-public class IterationToken implements AutomatonToken<String> {
+public class IterationToken implements AbstractToken<String> {
 
 	@Override
 	public String getValue() {

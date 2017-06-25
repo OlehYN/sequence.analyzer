@@ -16,7 +16,7 @@ import ukma.tprk.core.automaton.state.IterationState;
 import ukma.tprk.core.automaton.state.OpenState;
 import ukma.tprk.core.automaton.state.OperationState;
 import ukma.tprk.core.automaton.state.SeparatorState;
-import ukma.tprk.core.automaton.token.AutomatonToken;
+import ukma.tprk.core.token.AbstractToken;
 
 public class AutomatonTest {
 
@@ -54,7 +54,7 @@ public class AutomatonTest {
 		AutomatonService automatService = new AutomatonServiceImpl();
 
 		String result = "";
-		for (AutomatonToken<?> automatToken : automatService.getTokens(possibleStates, currentStates, input))
+		for (AbstractToken<?> automatToken : automatService.getTokens(possibleStates, currentStates, input))
 			result += automatToken.toString();
 
 		System.out.println(result);

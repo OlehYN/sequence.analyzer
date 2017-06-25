@@ -2,10 +2,10 @@ package ukma.tprk.core.automaton.state;
 
 import java.util.List;
 
-import ukma.tprk.core.automaton.token.FunctionToken;
+import ukma.tprk.core.token.OperationToken;
 import ukma.tprk.exception.UnfinishedReadingException;
 
-public class OperationState implements AutomatonState<FunctionToken> {
+public class OperationState implements AutomatonState<OperationToken> {
 
 	private String currentValue = "";
 
@@ -38,10 +38,10 @@ public class OperationState implements AutomatonState<FunctionToken> {
 	}
 
 	@Override
-	public FunctionToken getValue() {
+	public OperationToken getValue() {
 		for (String operationName : operationNames)
 			if (operationName.equals(currentValue))
-				return new FunctionToken(currentValue);
+				return new OperationToken(currentValue);
 
 		throw new UnfinishedReadingException("Operation value: " + currentValue);
 	}
